@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="12ec330f-4c56-4bca-a867-fcb7b05fa5c9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates_c/4d61c85e64440c58f82cc038f7a85ac909e59408_0.file.items.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/4d61c85e64440c58f82cc038f7a85ac909e59408_0.file.items.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/items.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/items.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ckfinder/userfiles/.ckfinder/cache/data/Files/caballero-18206.jpg.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ckfinder/userfiles/.ckfinder/cache/thumbs/Files/caballero-18206.jpg/caballero-18206__150x150.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/ckfinder/userfiles/files/caballero-18206.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,11 +43,11 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sitesession" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -127,7 +128,9 @@
       <workItem from="1575110894200" duration="3980000" />
       <workItem from="1575143291382" duration="899000" />
       <workItem from="1575144609431" duration="699000" />
-      <workItem from="1575147453011" duration="387000" />
+      <workItem from="1575147453011" duration="1200000" />
+      <workItem from="1575148682970" duration="25000" />
+      <workItem from="1575149402028" duration="987000" />
     </task>
     <servers />
   </component>
