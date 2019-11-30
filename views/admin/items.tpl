@@ -51,10 +51,8 @@
     <script src="/libs/ckeditor5-classik-full/ckeditor.js"></script>
     <script src="/libs/ckfinder/ckfinder.js"></script>
     <script>
-
         ClassicEditor
-
-            .create( document.querySelector( '#editor' ), {
+            .create(document.querySelector('#editor'), {
                 highlight: {
                     options: [
                         {
@@ -144,9 +142,6 @@
                             label: 'White',
                             hasBorder: true
                         },
-
-
-                        // ...
                     ]
                 },
                 fontSize: {
@@ -159,32 +154,19 @@
                     ]
                 },
                 alignment: {
-                    options: [ 'left', 'right','center','justify' ]
+                    options: ['left', 'right', 'center', 'justify']
                 },
 
                 ckfinder: {
                     uploadUrl: '/libs/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
                 },
 
-                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic','underline','subscript','superscript','|','alignment','fontSize','fontColor','highlight', '|', 'undo', 'redo', '|',  'insertTable', 'link','|',
-                    'bulletedList', 'numberedList', 'blockQuote'],
-
-
-                heading: {
-                    options: [
-                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
-                    ]
-                }
-
-
-            } )
-
-            .catch( error => {
-                console.error( error );
-            } );
+                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', 'underline', 'subscript', 'superscript', '|', 'alignment', 'fontSize', 'fontColor', 'highlight', '|', 'undo', 'redo', '|', 'insertTable', 'link', '|',
+                    'bulletedList', 'numberedList', 'blockQuote']
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 {/block}
 

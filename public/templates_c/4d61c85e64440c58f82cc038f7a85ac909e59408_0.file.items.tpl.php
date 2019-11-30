@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-30 15:05:39
+/* Smarty version 3.1.33, created on 2019-12-01 00:04:01
   from 'D:\php\domains\MVC\views\admin\items.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de25b1361e724_09395467',
+  'unifunc' => 'content_5de2d9418a71b4_76042120',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d61c85e64440c58f82cc038f7a85ac909e59408' => 
     array (
       0 => 'D:\\php\\domains\\MVC\\views\\admin\\items.tpl',
-      1 => 1575115535,
+      1 => 1575147839,
       2 => 'file',
     ),
   ),
@@ -20,17 +20,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5de25b1361e724_09395467 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de2d9418a71b4_76042120 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5710923305de25b1360ef21_10331163', 'title');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20583978765de2d941896ea1_48590958', 'title');
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2011964765de25b1360fbc8_38829888', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18834471025de2d941897e97_38001026', 'body');
 ?>
 
 
@@ -38,12 +38,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2011964765de25b136
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "admin/layout.tpl");
 }
 /* {block 'title'} */
-class Block_5710923305de25b1360ef21_10331163 extends Smarty_Internal_Block
+class Block_20583978765de2d941896ea1_48590958 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_5710923305de25b1360ef21_10331163',
+    0 => 'Block_20583978765de2d941896ea1_48590958',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -53,12 +53,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'title'} */
 /* {block 'body'} */
-class Block_2011964765de25b1360fbc8_38829888 extends Smarty_Internal_Block
+class Block_18834471025de2d941897e97_38001026 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_2011964765de25b1360fbc8_38829888',
+    0 => 'Block_18834471025de2d941897e97_38001026',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -128,10 +128,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 >
     <?php echo '<script'; ?>
 >
-
         ClassicEditor
-
-            .create( document.querySelector( '#editor' ), {
+            .create(document.querySelector('#editor'), {
                 highlight: {
                     options: [
                         {
@@ -221,9 +219,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             label: 'White',
                             hasBorder: true
                         },
-
-
-                        // ...
                     ]
                 },
                 fontSize: {
@@ -236,32 +231,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     ]
                 },
                 alignment: {
-                    options: [ 'left', 'right','center','justify' ]
+                    options: ['left', 'right', 'center', 'justify']
                 },
 
                 ckfinder: {
                     uploadUrl: '/libs/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
                 },
 
-                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic','underline','subscript','superscript','|','alignment','fontSize','fontColor','highlight', '|', 'undo', 'redo', '|',  'insertTable', 'link','|',
-                    'bulletedList', 'numberedList', 'blockQuote'],
-
-
-                heading: {
-                    options: [
-                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                        { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
-                    ]
-                }
-
-
-            } )
-
-            .catch( error => {
-                console.error( error );
-            } );
+                toolbar: ['ckfinder', 'imageUpload', '|', 'heading', '|', 'bold', 'italic', 'underline', 'subscript', 'superscript', '|', 'alignment', 'fontSize', 'fontColor', 'highlight', '|', 'undo', 'redo', '|', 'insertTable', 'link', '|',
+                    'bulletedList', 'numberedList', 'blockQuote']
+            })
+            .catch(error => {
+                console.error(error);
+            });
     <?php echo '</script'; ?>
 >
 <?php
