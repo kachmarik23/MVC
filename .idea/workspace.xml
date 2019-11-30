@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="12ec330f-4c56-4bca-a867-fcb7b05fa5c9" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="MVC" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Smarty" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UIwKUDXbilSqusyqRQqsrp3vIA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\php\domains\MVC\libs\ckeditor5-classik-full\translations" />
+      <recent name="D:\php\domains\MVC\libs\ckeditor5-classik-full" />
+      <recent name="D:\php\domains\MVC\libs\ckeditor5" />
+      <recent name="D:\php\domains\MVC\libs\ckfinder\userfiles\files" />
+      <recent name="D:\php\domains\MVC\libs\ckfinder\core\connector\php" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\php\domains\MVC\libs" />
+      <recent name="D:\php\domains\MVC" />
+      <recent name="D:\php\domains\MVC\public" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12ec330f-4c56-4bca-a867-fcb7b05fa5c9" name="Default Changelist" comment="" />
+      <created>1572174408863</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572174408863</updated>
+      <workItem from="1572174409987" duration="2786000" />
+      <workItem from="1572177259966" duration="13455000" />
+      <workItem from="1572602361536" duration="27421000" />
+      <workItem from="1572774877057" duration="5925000" />
+      <workItem from="1573287146701" duration="20640000" />
+      <workItem from="1573339274805" duration="176000" />
+      <workItem from="1573379471921" duration="24125000" />
+      <workItem from="1573424187616" duration="747000" />
+      <workItem from="1573508434617" duration="611000" />
+      <workItem from="1573576353178" duration="584000" />
+      <workItem from="1573577469976" duration="243000" />
+      <workItem from="1573763462171" duration="1067000" />
+      <workItem from="1573980386680" duration="9636000" />
+      <workItem from="1573991118759" duration="11033000" />
+      <workItem from="1574014862458" duration="318000" />
+      <workItem from="1574087574319" duration="11673000" />
+      <workItem from="1574111465767" duration="288000" />
+      <workItem from="1574112100079" duration="1693000" />
+      <workItem from="1574352160852" duration="4631000" />
+      <workItem from="1574363497325" duration="599000" />
+      <workItem from="1574427507261" duration="10324000" />
+      <workItem from="1574445839356" duration="2017000" />
+      <workItem from="1574452581040" duration="1538000" />
+      <workItem from="1574506963877" duration="20996000" />
+      <workItem from="1574533313378" duration="30000" />
+      <workItem from="1574535904247" duration="10863000" />
+      <workItem from="1574589647393" duration="26335000" />
+      <workItem from="1574624584269" duration="7935000" />
+      <workItem from="1574692652291" duration="9423000" />
+      <workItem from="1574702947560" duration="3285000" />
+      <workItem from="1574706377936" duration="135000" />
+      <workItem from="1574724142423" duration="652000" />
+      <workItem from="1574775760159" duration="10950000" />
+      <workItem from="1574791688601" duration="2960000" />
+      <workItem from="1574798532840" duration="8438000" />
+      <workItem from="1574853467423" duration="3208000" />
+      <workItem from="1575057357802" duration="184000" />
+      <workItem from="1575057556404" duration="2171000" />
+      <workItem from="1575059892419" duration="2744000" />
+      <workItem from="1575109486310" duration="557000" />
+      <workItem from="1575110894200" duration="3980000" />
+      <workItem from="1575143291382" duration="263000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
