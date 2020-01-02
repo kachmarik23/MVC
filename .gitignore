@@ -1,3 +1,4 @@
-.idea/
-public/templates_c/
-libs/
+# file: ~/.gitignore_global
+.idea
+public/templates_c
+libs
