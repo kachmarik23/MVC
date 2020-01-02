@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-8 col-lg-9">
                 <div class="row ">
-                    {if empty($items )}
+                     {if empty($items )}
                         В этой категории нет товаров...(
                         {/if}
                     {foreach $items as $item}

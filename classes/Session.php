@@ -21,7 +21,7 @@ class Session
 
     /**
      * @param $kay - зарегестрированный пользователь
-     * @param $value - данные пользователя из loginUser()
+     * @param $value - данные пользователя из UserModel/loginUser()
      */
     public static function set($kay, $value)
     {

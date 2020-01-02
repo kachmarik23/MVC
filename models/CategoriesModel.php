@@ -49,7 +49,7 @@ class CategoriesModel
         $dbh = DB::getInstance();
         $res = $dbh->prepare($query);
         $res->execute([$this->name]);//$this по тому что global
-        return (bool)$dbh->lastInsertId();//проверим если вставило вернет 1 если нет 0
+        return $dbh->lastInsertId();//проверим если вставило вернет 1 если нет 0
     }
 
     /**
@@ -63,16 +63,18 @@ class CategoriesModel
     public static function find($id)//id получаем из AdminController
     {
         $query = 'SELECT * FROM categories WHERE id=:id LIMIT 1';
+
         $dbh = DB::getInstance();
         $res = $dbh->prepare($query);
         $res->execute([':id' => $id]);
-        $res=$res->fetchAll( PDO::FETCH_ASSOC);
+        $res = $res->fetchAll(PDO::FETCH_ASSOC);
+
         if (!isset($res[0]['name'])) {
             return null;
         }
         $model = new self();//создает экземпляр класса самого себя $model (экземпляр класса внутри которого мы находимся)
         $model->name = $res[0]['name'];// прописываем имя
-        $model->id=$res[0]['id'];// прописываем id
+        $model->id = $res[0]['id'];// прописываем id
         return $model;// возвращемем назад в AdminController
     }
 
@@ -84,10 +86,20 @@ class CategoriesModel
     public function remove()
     {
 
-        $query='DELETE FROM categories WHERE id=:id LIMIT 1';//не забываем лимит
-        $dbh=DB::getInstance();
-        $res=$dbh->prepare($query);
-        $res->execute([':id'=>$this->id]);//id == $model->id экземпляр $model созданный в find($id) через new self()
+        $query = 'DELETE FROM categories WHERE id=:id LIMIT 1';//не забываем лимит
+        $dbh = DB::getInstance();
+        $res = $dbh->prepare($query);
+        $res->execute([':id' => $this->id]);//id == $model->id экземпляр $model созданный в find($id) через new self()
+        return (bool)$res->rowCount();// количество строк, затронутых последним SQL-запросом, если вернуло false
+
+    }
+
+    public function update()
+    {
+        $query = 'UPDATE `categories` SET `name`=:name WHERE `id` = :id LIMIT 1';//не забываем лимит
+        $dbh = DB::getInstance();
+        $res = $dbh->prepare($query);
+        $res->execute([':name' => $this->name, ':id' => $this->id]);//id == $model->id экземпляр $model созданный в find($id) через new self()
         return (bool)$res->rowCount();// количество строк, затронутых последним SQL-запросом, если вернуло false
 
     }

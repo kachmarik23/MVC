@@ -25,7 +25,7 @@ class AdminController
 
     /**
      * @throws SmartyException
-     * Доавить товар в админке
+     * Добавить товар в админке
      *
      */
 
@@ -50,37 +50,7 @@ class AdminController
         $trans = ["," => "."];
         $items->price = floatval(strtr($price, $trans));//strtr - заменить запятую на точку,floatval- изменим тип на float
         $items->category_id = trim(filter_var($_POST['category_id'], FILTER_SANITIZE_NUMBER_INT));
-        $error = '';
-        $accepted = [IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_BMP];//загружаемые файлы, только картинки
-        switch (true) {//проверим передаваемые анные
-            case strlen($items->name) < 3:
-                $error = 'Введите наименование товара, наименование товара не может быть мение 3х символов.';
-                break;
-            case strlen($items->description) < 30:
-                $error = 'Короткое описание';
-                break;
-            case $items->price < 0.1:
-                $error = 'Ваш товар стоит менее 0,01 ($)';
-                break;
-            case !$items->category_id :
-                $error = 'Необходимо выбрать категорию';
-                break;
-            case $_FILES['file'] ['size'] > 2097152:
-                $error = 'Размер файла привышает 2Мб';
-                break;
-            case  $_FILES['file'] ['size'] == 0:
-                $error = 'Вы не выбрали картинку';
-                break;
-            case !in_array(exif_imagetype($_FILES['file'] ['tmp_name']), $accepted):
-                //in_array — Проверяет, присутствует ли в массиве значение $accepted,
-                // exif_imagetype считывает начальные байты изображения и проверяет их сигнатуру.
-                $error = 'Недопустимый формат файла. Только jpeg, png, bmp и gif';
-                break;
-        }
-        if ($error != '') {
-            die($error);
-            exit();
-        }
+        ControlErr::items($items->name, $items->description, $items->price, $items->category_id);
         $items->save() ? header('Location:' . $_SERVER['HTTP_REFERER']) : die('Error ItemsModel / save');
 
     }
@@ -105,32 +75,58 @@ class AdminController
     public function category_create()
     {
         $category = new CategoriesModel();
-        $category->name = trim(filter_var($_POST['category'], FILTER_SANITIZE_STRING));
-        $error = '';
-        switch (true) {//проверим передаваемые данные
-            case strlen($category->name) < 2:
-                $error = 'Категория не может быть кароче 2х символов.';
-                break;
+        $category->name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));
+        $err = ControlErr::categoty($category->name);//проверим введенные пользователем данные
+        if ($err)
+        {
+            $this->response(['success' => $err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
         }
-        if ($error != '') {
-            die($error);
-            exit();
+        $category_id = $category->save(); //сохраним категорию и получим последнее вставленное id
+        $this->response(['success' => (bool)$category_id, 'id'=>$category_id]); //возвращаем в функцию $.ajax объект  Object { success: true, id: "16" }
+
+    }
+
+    public function category_update()
+    {
+
+        $category = CategoriesModel::find($_POST['id']);//проверим существует ли категория, если существует
+        // то мы полуим экземпляр класса CategoriesModel который мы вызвали в find() из самого себя $model = new self()
+        if (!$category) {
+            $this->response([
+                'success' => false
+            ]);
         }
-        $category->save() ? header('Location:' . $_SERVER['HTTP_REFERER']) : die('error CategoriesModel / save');// если вернуло
-        // true перезагрузим страницу, иначе в базу не записало ошибка
+        $category->name = $_POST['name'];//передадим name из массива POST
+
+        $err = ControlErr::categoty($category->name);
+        if ($err) {
+            $this->response(['success' => $err]);
+        }
+        $res = $category->update();//в CategoriesModel обналяем категорию
+        if (!$res) {
+            $this->response(['success' => $res]);
+        }
     }
 
     public function category_remove()
     {
-        $category = CategoriesModel::find($_GET['id']);//проверим существует ли категория, если существует
+        $category = CategoriesModel::find($_POST['id']);//проверим существует ли категория, если существует
         // то мы полуим экземпляр класса CategoriesModel который мы вызвали в find() из самого себя $model = new self()
-        if(!$category instanceof  CategoriesModel){//является ли текущий объект экземпляром указанного класса,
+        if (!$category instanceof CategoriesModel) {//является ли текущий объект экземпляром указанного класса,
             // то есть мы проверили создался или нет экземпляр класса, если да то такой id существует в базе
-            die('Category not found');
+            $this->response([
+                'success' => false
+            ]);
         }
-        $category->remove() ? header('Location:' . $_SERVER['HTTP_REFERER']) : die('error CategoriesModel / remove');// если вернуло
-        // true перезагрузим страницу, иначе ошибка, не удалили ничего.
+       $res = $category->remove();// удаляем категорию
+        $this->response(['success' => $res]);
+
     }
 
+    private function response($data = ['success' => true])//что бы не проставлять везде заголовок и не копировать json_encode создадим частную ф-цию
+    {
+        header('Content-Type: application/json');
+        die(json_encode([$data]));
+    }
 }
 
