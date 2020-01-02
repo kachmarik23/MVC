@@ -14,7 +14,6 @@ function updateStart(category_id) {
     $('#name_' + category_id).html(html);
     $('#update_' + category_id).text('Сохранить').attr('class', 'btn btn-success btn-sm').attr('onclick', 'endUpdate(' + category_id + ')');
 }
-
 function endUpdate(category_id) {
     var text = $('#new_name_' + category_id).val();/*для получения значения из new_name  используем .val()*/
     /*сформируем ajax запрос функции $.ajax, $.get, $.post не будут работать с версией slin.jquery всегда нужна полная*/
@@ -29,26 +28,11 @@ function endUpdate(category_id) {
     success: function (data) {
         if (data != '') {
             /*обрабатываем данные полученные от /admin/category_update*/
-            // alert(data);/*выводим сообщения об ошибках*/
-            jQuery.noConflict();// из-за конфликта jquery модалка не вылазит, jQuery.noConflict() чтобы избежать конфликта
-            $('    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
-                '        <div class="modal-dialog modal-dialog-centered" role="document">' +
-                '            <div class="modal-content">' +
-                '                <div class="modal-header">' +
-                '                    <h5 class="modal-title" id="exampleModalLongTitle">Ошибка</h5>' +
-                '                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-                '                        <span aria-hidden="true">&times;</span>' +
-                '                    </button>' +
-                '                </div>' +
-                '                <div class="modal-body">' +
-                data +
-                '                </div>' +
-                '                <div class="modal-footer">' +
-                '                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-                '                </div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>').modal();
+             //alert(data);/*выводим сообщения об ошибках*/
+            //jQuery.noConflict(); // из-за конфликта jquery модалка не вылазит, jQuery.noConflict() чтобы избежать конфликта
+            $('#messageModal').text(data);
+            $('#modalErr').modal();
+
             var html = "<input id='new_name_" + category_id + "' class='form-control  form-control-sm' style='width: 150px' type='text' value='" + text + "' >";
             /*обращаемся к элементу по id и изменяем методом html содержимое - передаем html*/
             $('#name_' + category_id).html(html);
@@ -58,10 +42,7 @@ function endUpdate(category_id) {
 });
     $('#name_' + category_id).text(text);/*для отображения в броузере передаем новое значение категории в таблицу name*/
     $('#update_' + category_id).text('Изменить').attr('class', 'btn btn-warning btn-sm').attr('onclick', 'updateStart(' + category_id + ')');
-
-
 }
-
 function removeCategory(category_id) {
     $.ajax({
         url: '/admin/category_remove', /*url где обрабатываем данные*/
@@ -75,18 +56,9 @@ function removeCategory(category_id) {
     }
 });
 }
-
 function createCategory() {
     $('.alert-danger').hide();
     var name = $('#new_category').val().trim();
-    if (name.length < 2){
-        $('#message').text(' Название категории не может содержать мение 2х символов');
-        $('.alert-danger').fadeIn().show();/*fadeIn() появиться плавно*/
-        setTimeout(function () {
-            $('.alert-danger').fadeOut();/*fadeOut() исчезнуть плавно*/
-        }, 3000);
-        return;
-    }
 
     $.ajax({
         url: '/admin/category_create', /*url где обрабатываем данные*/
@@ -97,8 +69,17 @@ function createCategory() {
     },
 
     success: function (result) {
-        /*что бы получить последнее вставленное id пвозвращаем его $category_id = $category->save();
-            из /admin/category_create result - это объект*/
+        /* так как result при Err возращает string отлавливаем и выводим сообщение об ошибке*/
+        if (typeof result == 'string'){
+            $('#message').text(result);
+            $('.alert-danger').fadeIn().show();/*fadeIn() появиться плавно*/
+             setTimeout(function () {
+                 $('.alert-danger').fadeOut();/*fadeOut() исчезнуть плавно*/
+             }, 3000);
+             return;
+             }
+             /*что бы получить последнее вставленное id пвозвращаем его $category_id = $category->save();
+                 из /admin/category_create result - это объект*/
         var html = "<tr id='row_" + result[0].id + "'>" +
             "<td>" + result[0].id + "</td>" +
             "<td id='name_" + result[0].id + "'>" + name + "</td>" +
