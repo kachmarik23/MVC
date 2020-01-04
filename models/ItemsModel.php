@@ -11,16 +11,26 @@ class ItemsModel
     public $description;
     public $category_id;
 
+    const CECH_KEY ='items';
+    const CECHE_TTL=86400;// установим значение $expire времени кеширования
+
     /**
      * @return array
      * извлекаем список товаров
      */
     public static function itemsList()
     {
+        $cacheKey = self::CECH_KEY;
+        $cachedItems = Cache::get($cacheKey);
+        if ($cachedItems){
+            return $cachedItems;
+        }
         $dbh = DB::getInstance();
         $res = $dbh->prepare('SELECT * FROM `items` ');
         $res->execute();
-        return $res->fetchAll(PDO::FETCH_ASSOC);
+        $items = $res->fetchAll(PDO::FETCH_ASSOC);
+        Cache::set($cacheKey,$items,self::CECHE_TTL);
+        return $items;
     }
 
     /**
@@ -83,6 +93,7 @@ class ItemsModel
         $dbh = DB::getInstance();
         $res = $dbh->prepare($query);
         $res->execute([$this->name, $this->description, $this->price, $this->category_id, $name_pic]);//$this по тому что переменный public
+        Cache::forget(self::CECH_KEY);
         return(bool)$dbh->lastInsertId(); // Последний добавленный id, проверка
 
     }

@@ -48,6 +48,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -59,7 +60,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <span id="messageModal"></span>
+                    <strong>Error:</strong><span id="messageModal"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

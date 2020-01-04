@@ -58,11 +58,10 @@ class ControlErr
         global $error;
         switch (true) {//проверим передаваемые данные
             case strlen($name) < 2:
-                $error = 'Введите категорию, наименование категории не может быть короче 2х символов.';
+                $error = ' Наименование категории не может быть короче 2х символов.';
                 break;
         }
-        $err = new self();
-        $err->err($error);
+        return $error;
     }
 
     public static function users($name,$pass){

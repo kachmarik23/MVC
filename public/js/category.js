@@ -15,8 +15,8 @@ function updateStart(category_id) {
     $('#update_' + category_id).text('Сохранить').attr('class', 'btn btn-success btn-sm').attr('onclick', 'endUpdate(' + category_id + ')');
 }
 function endUpdate(category_id) {
-    var text = $('#new_name_' + category_id).val();/*для получения значения из new_name  используем .val()*/
-    /*сформируем ajax запрос функции $.ajax, $.get, $.post не будут работать с версией slin.jquery всегда нужна полная*/
+    var text = $('#new_name_' + category_id).val().trim().replace(/<[^>]+>/g,'');/*для получения значения из new_name  используем .val()*/
+    /*сформируем ajax запрос функции $.ajax, $.get, $.post не будут работать с версией slin.jquery всегда нужна полная .trim().replace удалить пробелы и теги*/
     $.ajax({
         url: '/admin/category_update', /*url где обрабатываем данные*/
     type: 'POST',/*метод передачи*/
@@ -26,11 +26,11 @@ function endUpdate(category_id) {
             'name': text,
     },
     success: function (data) {
-        if (data != '') {
-            /*обрабатываем данные полученные от /admin/category_update*/
+        if (data) {
+             /*обрабатываем данные полученные от /admin/category_update*/
              //alert(data);/*выводим сообщения об ошибках*/
             //jQuery.noConflict(); // из-за конфликта jquery модалка не вылазит, jQuery.noConflict() чтобы избежать конфликта
-            $('#messageModal').text(data);
+            $('#messageModal').text(data[0].err);
             $('#modalErr').modal();
 
             var html = "<input id='new_name_" + category_id + "' class='form-control  form-control-sm' style='width: 150px' type='text' value='" + text + "' >";
@@ -58,7 +58,7 @@ function removeCategory(category_id) {
 }
 function createCategory() {
     $('.alert-danger').hide();
-    var name = $('#new_category').val().trim();
+    var name = $('#new_category').val().trim().replace(/<[^>]+>/g,'');/*удалить пробелы trim() и удалить теги replace*/
 
     $.ajax({
         url: '/admin/category_create', /*url где обрабатываем данные*/
@@ -70,8 +70,9 @@ function createCategory() {
 
     success: function (result) {
         /* так как result при Err возращает string отлавливаем и выводим сообщение об ошибке*/
-        if (typeof result == 'string'){
-            $('#message').text(result);
+        console.log(result);
+        if (!result[0].success){
+            $('#message').text(result[0].err);
             $('.alert-danger').fadeIn().show();/*fadeIn() появиться плавно*/
              setTimeout(function () {
                  $('.alert-danger').fadeOut();/*fadeOut() исчезнуть плавно*/

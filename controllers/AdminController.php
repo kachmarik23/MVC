@@ -78,9 +78,10 @@ class AdminController
         $category = new CategoriesModel();
         $category->name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));
         $err = ControlErr::categoty($category->name);//проверим введенные пользователем данные
+
         if ($err)
         {
-            $this->getResponse(['success' => $err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
+            $this->getResponse(['success' => false, 'err'=>$err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
         }
         $category_id = $category->save(); //сохраним категорию и получим последнее вставленное id
         $this->getResponse(['success' => (bool)$category_id, 'id'=>$category_id]); //возвращаем в функцию $.ajax объект  Object { success: true, id: "16" }
@@ -94,18 +95,18 @@ class AdminController
         // то мы полуим экземпляр класса CategoriesModel который мы вызвали в find() из самого себя $model = new self()
         if (!$category) {
             $this->getResponse([
-                'success' => false
+                'success' => false, 'err'=>'пусто'
             ]);
         }
-        $category->name = $_POST['name'];//передадим name из массива POST
+        $category->name = trim(filter_var($_POST['name'], FILTER_SANITIZE_STRING));//передадим name из массива POST
 
         $err = ControlErr::categoty($category->name);
         if ($err) {
-            $this->getResponse(['success' => $err]);
+            $this->getResponse(['success' => false, 'err'=> $err]);
         }
         $res = $category->update();//в CategoriesModel обналяем категорию
         if (!$res) {
-            $this->getResponse(['success' => $res]);
+            $this->getResponse(['success' => $res,'err'=>' Не удалось обновить категорию']);
         }
     }
 
