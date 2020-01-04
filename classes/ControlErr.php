@@ -65,11 +65,28 @@ class ControlErr
         $err->err($error);
     }
 
+    public static function users($name,$pass){
+        global $error;
+        switch (true) {//проверим передаваемые данные
+            case strlen($name) < 4:
+                $error = ' Логин не может быть короче 4х символов.';
+                break;
+            case strlen($name)>20:
+                $error = ' Логин не может быть дленее 10ти символов.';
+                break;
+            case strlen($pass) < 6:
+                $error = ' Пароль не может быть короче 6ти символов.';
+                break;
+        }
+        return $error;
+
+    }
+
     /**
      * @param $error
      */
     private function err($error){
-        if ($error != '') {
+        if ($error) {
            die ($error);
         }
     }

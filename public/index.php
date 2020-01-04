@@ -1,11 +1,13 @@
 <?php
 require_once '../libs/smarty/Smarty.class.php';//подключаем шаблонизатор смарти
 require_once '../interfaces/ControllerInterfaces.php';//подключим интерфейс, не проходит в автолоад не знаю по чему
+
 /*autoload classes*/
 
 spl_autoload_register(function ($class) {
 
     $patch = '../%s/' . $class . '.php';// используем sprintf в шаблон %s вставим строку %S- строка
+
     switch (true) {
         case strpos($class, 'Controller')://что-бы разделить классы controller и Models ищим первое вхождение в строку strpos
             $patch = sprintf($patch, 'controllers');// подставляем в шаблон аргумент controllers вместо %S
@@ -13,13 +15,19 @@ spl_autoload_register(function ($class) {
         case strpos($class, 'Model'):
             $patch = sprintf($patch, 'models');
             break;
+        case strpos($class, 'Trait'):
+            $patch = sprintf($patch, 'traits');
+            break;
+
 
         default :
             $patch = sprintf($patch, 'classes');
             break;
+
     }
 
     (file_exists($patch)) ? require_once($patch) : die('404 ' . $class . ' not fount!');
+
 });
 /*подключим шаблонизатор smarty*/
 $smarty = new Smarty();//создаем класс смарти

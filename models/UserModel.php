@@ -47,7 +47,7 @@ class UserModel
      * @return mixed
      * во время регистрации проверяем существует ли в БД данный логин
      */
-    private function getUserByLogin($login){//проверяем в БД наличие пользователя
+    public function getUserByLogin($login){//проверяем в БД наличие пользователя
         $dbh=DB::getInstance();//подключаем БД
         $query = 'SELECT * FROM `users` WHERE `login` = :login';
         $res=$dbh->prepare($query);

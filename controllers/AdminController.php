@@ -3,6 +3,7 @@
 
 class AdminController
 {
+    use ResponseTrait;
     /**
      * @throws SmartyException
      * функция по умолчанию. Получем список заказов всех пользователей
@@ -79,10 +80,10 @@ class AdminController
         $err = ControlErr::categoty($category->name);//проверим введенные пользователем данные
         if ($err)
         {
-            $this->response(['success' => $err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
+            $this->getResponse(['success' => $err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
         }
         $category_id = $category->save(); //сохраним категорию и получим последнее вставленное id
-        $this->response(['success' => (bool)$category_id, 'id'=>$category_id]); //возвращаем в функцию $.ajax объект  Object { success: true, id: "16" }
+        $this->getResponse(['success' => (bool)$category_id, 'id'=>$category_id]); //возвращаем в функцию $.ajax объект  Object { success: true, id: "16" }
 
     }
 
@@ -92,7 +93,7 @@ class AdminController
         $category = CategoriesModel::find($_POST['id']);//проверим существует ли категория, если существует
         // то мы полуим экземпляр класса CategoriesModel который мы вызвали в find() из самого себя $model = new self()
         if (!$category) {
-            $this->response([
+            $this->getResponse([
                 'success' => false
             ]);
         }
@@ -100,11 +101,11 @@ class AdminController
 
         $err = ControlErr::categoty($category->name);
         if ($err) {
-            $this->response(['success' => $err]);
+            $this->getResponse(['success' => $err]);
         }
         $res = $category->update();//в CategoriesModel обналяем категорию
         if (!$res) {
-            $this->response(['success' => $res]);
+            $this->getResponse(['success' => $res]);
         }
     }
 
@@ -114,19 +115,15 @@ class AdminController
         // то мы полуим экземпляр класса CategoriesModel который мы вызвали в find() из самого себя $model = new self()
         if (!$category instanceof CategoriesModel) {//является ли текущий объект экземпляром указанного класса,
             // то есть мы проверили создался или нет экземпляр класса, если да то такой id существует в базе
-            $this->response([
+            $this->getResponse([
                 'success' => false
             ]);
         }
        $res = $category->remove();// удаляем категорию
-        $this->response(['success' => $res]);
+        $this->getResponse(['success' => $res]);
 
     }
 
-    private function response($data = ['success' => true])//что бы не проставлять везде заголовок и не копировать json_encode создадим частную ф-цию
-    {
-        header('Content-Type: application/json');
-        die(json_encode([$data]));
-    }
+
 }
 

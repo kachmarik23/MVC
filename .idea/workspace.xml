@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12ec330f-4c56-4bca-a867-fcb7b05fa5c9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/traits/ResponseTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/modal/login.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/modal/rerister.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/ControlErr.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/ControlErr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/UserModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/UserModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layout.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/login.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registr.tpl" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,24 +53,26 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sitesession" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/modal" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\php\domains\MVC\traits" />
+      <recent name="D:\php\domains\MVC\classes" />
+      <recent name="D:\php\domains\MVC\controllers" />
+      <recent name="D:\php\domains\MVC\libs" />
+      <recent name="D:\php\domains\MVC" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\php\domains\MVC\views\modal" />
+      <recent name="D:\php\domains\MVC\traits" />
       <recent name="D:\php\domains\MVC\public\js" />
       <recent name="D:\php\domains\MVC\views\admin" />
       <recent name="D:\php\domains\MVC\libs\ckeditor5-classik-full\translations" />
-      <recent name="D:\php\domains\MVC\libs\ckeditor5-classik-full" />
-      <recent name="D:\php\domains\MVC\libs\ckeditor5" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\php\domains\MVC\libs" />
-      <recent name="D:\php\domains\MVC" />
-      <recent name="D:\php\domains\MVC\public" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -143,7 +156,10 @@
       <workItem from="1577496778523" duration="491000" />
       <workItem from="1577524098460" duration="3284000" />
       <workItem from="1577784578866" duration="12292000" />
-      <workItem from="1577964724900" duration="19039000" />
+      <workItem from="1577964724900" duration="19243000" />
+      <workItem from="1578038456639" duration="27412000" />
+      <workItem from="1578088760258" duration="89000" />
+      <workItem from="1578128856043" duration="3611000" />
     </task>
     <servers />
   </component>
