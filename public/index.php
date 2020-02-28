@@ -1,4 +1,5 @@
 <?php
+require_once '../vendor/autoload.php';
 require_once '../libs/smarty/Smarty.class.php';//подключаем шаблонизатор смарти
 require_once '../interfaces/ControllerInterfaces.php';//подключим интерфейс, не проходит в автолоад не знаю по чему
 
