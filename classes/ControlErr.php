@@ -11,23 +11,28 @@ class ControlErr
     /**
      *
      * @param $name
-     * @param $price
+     * @param $intro
      * @param $description
+     * @param $price
      * @param $category_id
      * проверка при создании товара в AdminController->item_create()
+     * @return string
      */
 
-    public static function items ($name, $price,$description,$category_id){
+    public static function items ($name, $intro, $description, $price,  $category_id){
         global $error;
         $accepted = [IMAGETYPE_PNG, IMAGETYPE_JPEG, IMAGETYPE_GIF, IMAGETYPE_BMP];//загружаемые файлы, только картинки
         switch (true) {//проверим передаваемые данные
             case strlen($name) < 3:
                 $error = 'Введите наименование товара, наименование товара не может быть короче 3х символов.';
                 break;
-            case strlen($description) < 30:
-                $error = 'Короткое описание';
+            case strlen($intro) < 3:
+                $error = 'Краткое описание менее 60 символов';
                 break;
-            case $price < 0.1:
+            case strlen($description) < 3:
+                $error = 'Описание товара менее 150 символов';
+                break;
+            case $price < 0.01:
                 $error = 'Ваш товар стоит менее 0,01 ($)';
                 break;
             case !$category_id :
@@ -45,14 +50,14 @@ class ControlErr
                 $error = 'Недопустимый формат файла. Только jpeg, png, bmp и gif';
                 break;
         }
-        $err = new self();//менод внутри класса
-        $err->err($error);
+        return $error;
 
     }
 
     /**
      * @param $name
      * Проверка создания карегории AdminController -> category_create();
+     * @return string
      */
     public static function categoty($name){
         global $error;

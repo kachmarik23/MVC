@@ -18,8 +18,6 @@ spl_autoload_register(function ($class) {
         case strpos($class, 'Trait'):
             $patch = sprintf($patch, 'traits');
             break;
-
-
         default :
             $patch = sprintf($patch, 'classes');
             break;
@@ -34,9 +32,9 @@ $smarty = new Smarty();//создаем класс смарти
 $smarty->setTemplateDir('../views');//указываем где будут находиться файлы шаблонизатора
 
 /*Старт сессия*/
+
 Session::start();
 $smarty->assign('cart_count', CartController::getItemsCount());// кол-во товара в корзине
-
 
 /*Роутер*/
 $data = ltrim($_SERVER['REQUEST_URI'], '/');// при помощи суперглобального массива получаем URL,

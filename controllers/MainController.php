@@ -14,6 +14,7 @@ class MainController  implements Controller //подключили интерф�
         $smarty->assign('categories',$categories);
 
         $smarty->display('main.tpl');
+
     }
 
     public function items(){

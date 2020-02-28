@@ -31,7 +31,7 @@
                             <div class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">{$item['name']}</h5>
-                                    <div class="card-text">{$item['description']}</div>
+                                    <div class="card-text">{$item['intro']}</div>
                                     <div class="card-text mb-2">Цена: <strong>{$item['price']}$</strong></div>
                                     <a href="/cart/add/?id={$item['id']}" class="btn btn-success">Корзина</a>
                                     <a href="#" class="btn btn-primary">Инфо</a>

@@ -2,6 +2,7 @@
 
 class UserModel
 {
+    use ResponseTrait;
     public $login;
     public $pass;
 
@@ -9,22 +10,23 @@ class UserModel
      * @return bool
      * регистрация пользователя
      */
-    public function registrUser(){
+    public function registrUser()
+    {
 
-        $user=$this->getUserByLogin($this->login);//проверяем в БД наличие пользователя
+        $user = $this->getUserByLogin($this->login);//проверяем в БД наличие пользователя
 
-        if($user){
-           //если есть в БД
+        if ($user) {
+            //если есть в БД
             die('User exist');
         }
         //если нет в БД регистрируем
-        $login=$this->login;
-        $pass=$this->pass;
-        $dbh=DB::getInstance();//подключаем экземпляр БД
-        $res=$dbh->prepare("INSERT INTO users(login,pass, date) VALUES (?,?,?)");
-        $res->execute([$login, $pass,time()]);
+        $login = $this->login;
+        $pass = $this->pass;
+        $dbh = DB::getInstance();//подключаем экземпляр БД
+        $res = $dbh->prepare("INSERT INTO users(login,pass, date) VALUES (?,?,?)");
+        $res->execute([$login, $pass, time()]);
         $this->loginUser();//авторизуем нового пользователя должен сущемтвовать метод LoginUser
-        return (bool) $res->rowCount();//что бы проверить внесен ли пользователь в БД приводим к логическому виду колличество затронутых
+        return (bool)$res->rowCount();//что бы проверить внесен ли пользователь в БД приводим к логическому виду колличество затронутых
         // строк rowCount(). Проверку осуществляем в UsersController
     }
 
@@ -32,12 +34,13 @@ class UserModel
      * проверяем на наличие пользователя в БД getUserByLogin()
      *
      */
-    public function  loginUser(){
+    public function loginUser()
+    {
         $user = $this->getUserByLogin($this->login);
-        $pass=$this->pass;//пароль переданный пользователем
-        if ($user['pass']==$pass){
-            Session::set('user',$user);//записываем данные пользователя в суперглобальный массив SESSION класс Session метод set
-        return true;
+        $pass = $this->pass;//пароль переданный пользователем
+        if ($user['pass'] == $pass) {
+            Session::set('user', $user);//записываем данные пользователя в суперглобальный массив SESSION класс Session метод set
+            return true;
         }
         return false;
     }
@@ -47,11 +50,12 @@ class UserModel
      * @return mixed
      * во время регистрации проверяем существует ли в БД данный логин
      */
-    public function getUserByLogin($login){//проверяем в БД наличие пользователя
-        $dbh=DB::getInstance();//подключаем БД
+    public function getUserByLogin($login)
+    {//проверяем в БД наличие пользователя
+        $dbh = DB::getInstance();//подключаем БД
         $query = 'SELECT * FROM `users` WHERE `login` = :login';
-        $res=$dbh->prepare($query);
-        $res->execute([':login'=>$login]);
+        $res = $dbh->prepare($query);
+        $res->execute([':login' => $login]);
         return $res->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -59,10 +63,11 @@ class UserModel
      * @return array
      * извлекаем список пользователей
      */
-    public static function userList(){
-        $dbh=DB::getInstance();
+    public static function userList()
+    {
+        $dbh = DB::getInstance();
         $res = $dbh->prepare('SELECT `id`,`login` FROM `users` ');
-        $res ->execute();
+        $res->execute();
         return $res->fetchAll(PDO::FETCH_ASSOC);
     }
 }

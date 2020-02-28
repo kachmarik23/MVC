@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/them.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>{block name=title}{/block}</title>
 </head>
 <body>
@@ -27,6 +27,9 @@
 
             </ul>
             <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/search">Поиск</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">Cart ({$cart_count|default:"0"}
                         ){*|default:"0" значение по умолчанию 0*}</a>
@@ -71,7 +74,7 @@
 {include file='modal/rerister.tpl'}
 {block name=body}{/block}
 <script src="/public/js/modal.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>

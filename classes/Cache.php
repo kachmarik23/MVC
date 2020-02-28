@@ -9,7 +9,7 @@ class Cache
     {
         $fileName = self::CACHE_DIR . $key . ".json";
         // проверим на наличие файла кеша, если нет то значение по дефолту
-        if (!file_exists($fileName)){
+        if (!file_exists($fileName)) {
             return $default;
         }
         $json = file_get_contents($fileName);// считываем данные
@@ -40,7 +40,7 @@ class Cache
     public static function forget($key)
     {
         $fileName = self::CACHE_DIR . $key . ".json";
-        if (!file_exists($fileName)){
+        if (!file_exists($fileName)) {
             return false;
         }
         unlink($fileName);
@@ -48,4 +48,29 @@ class Cache
 
     }
 
+    /**
+     * @return bool
+     * Очистка результатов кеша поиска при доюавлении товара и удалении
+     */
+    public static function clearSearch()
+    {
+        $cache_dir = scandir(self::CACHE_DIR);//счытываем файлы в директории
+
+        foreach ($cache_dir as $item => $value) {
+            if ($value === '.' || $value === '..') {
+                unset($cache_dir[$item]);//удаляем точки в начале списка ф-лов
+            }
+            $cache_dir[$item] = array_shift(explode('.', $value));//отрезаем .json ибо в forget() нужно передать только имя
+            if ($value != strpos($value, 'search')) { // находим по ключу 'search' все ф-лы которые не являются ф-лами поиска
+                unset($cache_dir[$item]);//удаляем из массива
+            }
+        }
+        if (empty($cache_dir)) { //если массив пуст значит уже все удалили
+            return false;
+        }
+        foreach ($cache_dir as $item) {
+            self::forget($item);// удаляем из кеша ф-лы поиска
+        }
+        return false;
+    }
 }

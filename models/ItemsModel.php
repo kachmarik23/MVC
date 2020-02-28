@@ -7,12 +7,16 @@ class ItemsModel
      * public чтоб не переавать в функцию save ()
      */
     public $name;
+    public $intro;
     public $price;
     public $description;
     public $category_id;
+    public $name_pic;
+    public $quantity;
+    public $id;
 
-    const CECH_KEY ='items';
-    const CECHE_TTL=86400;// установим значение $expire времени кеширования
+    const CECH_KEY = 'items';
+    const CECHE_TTL = 86400;// установим значение $expire времени кеширования
 
     /**
      * @return array
@@ -22,14 +26,14 @@ class ItemsModel
     {
         $cacheKey = self::CECH_KEY;
         $cachedItems = Cache::get($cacheKey);
-        if ($cachedItems){
+        if ($cachedItems) {
             return $cachedItems;
         }
         $dbh = DB::getInstance();
         $res = $dbh->prepare('SELECT * FROM `items` ');
         $res->execute();
         $items = $res->fetchAll(PDO::FETCH_ASSOC);
-        Cache::set($cacheKey,$items,self::CECHE_TTL);
+        Cache::set($cacheKey, $items, self::CECHE_TTL);
         return $items;
     }
 
@@ -44,6 +48,7 @@ class ItemsModel
         $res = $dbh->prepare('SELECT * FROM `items` WHERE `category_id`=:id');
         $res->execute([':id' => $id]);
         return $res->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
     /**
@@ -64,16 +69,23 @@ class ItemsModel
 
     /**
      * @param $id
-     * @return false|PDOStatement
-     * проверка существует ли добавляемый/уменьшаемый товар в cart для CartController inc
+     * @return ItemsModel|null
      */
 
     public static function getItemById($id)
     {
-        $query = 'SELECT * FROM items WHERE id= ' . $id . ' LIMIT 1';
         $dbh = DB::getInstance();
-        return $dbh->query($query, PDO::FETCH_ASSOC);
-
+        $query = 'SELECT * FROM `items` WHERE `id` = :id LIMIT 1';
+        $res = $dbh->prepare($query);
+        $res->execute([':id' => $id]);
+        $items = $res->fetchAll(PDO::FETCH_ASSOC);
+        if (!isset($items[0]['name'])) {
+            return null;
+        }
+        $model = new self();//создает экземпляр класса самого себя $model (экземпляр класса внутри которого мы находимся)
+        $model->name_pic = $items[0]['pic'];// прописываем имя
+        $model->id = $items[0]['id'];// прописываем id
+        return $model;// возвращемем назад в AdminController
     }
 
     /**
@@ -81,21 +93,31 @@ class ItemsModel
      */
     public function save()
     {
-        // згрузка файлов
-
-        $uploads_dir = 'images';//дериктория куда сохраняем
-        if (!is_dir($uploads_dir)) mkdir($uploads_dir, 0777);
-        $tmp_file = $_FILES['file']['tmp_name'];//имя временного файла, выясняем из массива $_FILES, print_r($_FILES)
-        $name= $_FILES['file']['name'];
-        $name_pic =Translit::cyrillic($name);
-        move_uploaded_file($tmp_file, "$uploads_dir/$name_pic");//переносим файл из временного хранилища в папку images
-        $query = "INSERT INTO items (`name`, `description`, `price`, `category_id`,`pic`) VALUES (?,?,?,?,?)";
+        $query = "INSERT INTO items (`name`,`intro`, `description`, `price`, `category_id`,`quantity`,`pic`) VALUES (?,?,?,?,?,?,?)";
         $dbh = DB::getInstance();
         $res = $dbh->prepare($query);
-        $res->execute([$this->name, $this->description, $this->price, $this->category_id, $name_pic]);//$this по тому что переменный public
+        $res->execute([$this->name, $this->intro, $this->description, $this->price, $this->category_id, $this->quantity, $this->name_pic]);//$this по тому что переменный public
         Cache::forget(self::CECH_KEY);
-        return(bool)$dbh->lastInsertId(); // Последний добавленный id, проверка
+        Cache::clearSearch();
+        return (bool)$dbh->lastInsertId(); // Последний добавленный id, проверка
 
     }
+
+    public function remove()
+    {
+        $query = 'DELETE FROM `items` WHERE `id` = :id LIMIT 1';//не забываем лимит
+        $dbh = DB::getInstance();
+        $res = $dbh->prepare($query);
+        $res->execute([':id' => $this->id]);//id == $model->id экземпляр $model созданный в find($id) через new self()
+        Cache::forget(self::CECH_KEY);//очистить кеш
+        unlink('images/'.$this->name_pic);
+        return 'images/'.$this->name_pic;// количество строк, затронутых последним SQL-запросом, если вернуло false
+    }
+
+    public function update()
+    {
+
+    }
+
 
 }

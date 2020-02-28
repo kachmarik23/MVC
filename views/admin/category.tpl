@@ -9,9 +9,8 @@
                     <thead class="thead-dark">
                     <th>ID</th>
                     <th>Названиее</th>
-                    <th>Кол-во товаров</th>
+                    <th>Кол-во наименований</th>
                     <th colspan="2" class="text-center"> Действия</th>
-
                     </thead>
                     <tbody id="row_holder">
                     {foreach $categories as $category}
@@ -44,13 +43,14 @@
                         <button class="btn_create_cat btn btn-success ml-1">Добавить</button>
                     </div>
                 </div>
-                <div  class=" col-9 alert alert-danger mt-2" style="display: none"><strong>Error:</strong><span id="message"></span></div>
+                <div class=" col-9 alert alert-danger mt-2" style="display: none"><strong>Error:</strong><span
+                            id="message"></span></div>
             </div>
         </div>
     </div>
-
     <!-- Modal -->
-    <div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="modalErr" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -69,7 +69,4 @@
         </div>
     </div>
     <script src="/public/js/category.js"></script>
-
 {/block}
-
-

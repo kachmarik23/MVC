@@ -4,6 +4,7 @@
 class UsersController
 {
     use ResponseTrait;
+
     /**
      * @throws SmartyException
      * регестрация пользователя в класс UserModel передаем
@@ -17,19 +18,23 @@ class UsersController
         if (!empty($_POST['login']) && !empty($_POST['pass'])) {
             $user = new UserModel();//создаем класс экземпляра UserModel
             $login = strip_tags(trim($_POST['login'])); //передаем логин
-            $user->login=$login;
+            $user->login = $login;
             $res = $user->getUserByLogin($user->login);
-            if($res){
-                $this->getResponse(['success' => false, 'err'=> ' Такой логин занят']);
+            if ($res) {
+                $this->getResponse(['success' => false, 'err' => ' Такой логин занят']);
             }
-            $pass=strip_tags(trim($_POST['pass']));
-            $err=ControlErr::users($login,$pass);
-            if ($err)
-            {
+            $pass = strip_tags(trim($_POST['pass']));
+            $err = ControlErr::users($login, $pass);
+            if ($err) {
                 $this->getResponse(['success' => false, 'err' => $err]);//если есть ошибки используя ф-цию переводим в json сообщение об ошибке
             }
             $hash = "jkjpou4689RUS78Dkhj56gyg19";
-            $user->pass = md5($pass. $hash);
+            //preg_match - проверка строки на содержание регулярного ыражения
+            //проверяем пароль на содержание одной цифры, одной строчной буквы, одной заглавной, не мение 6 символов
+            if (!preg_match('@^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z]{6,}$@', $pass)) {
+                $this->getResponse(['err' => ' Пароль должен содержать символы a-z|A-Z|0-9']);
+            }
+            $user->pass = md5($pass . $hash);
 
             $resReg = $user->registrUser();//вызываем метод registrUser из UserModel и он нам возвращает логическое
             // значение затронутых строк в базе return (bool) $res->rowCount()
@@ -54,14 +59,14 @@ class UsersController
             $user->pass = md5(strip_tags(trim($_POST['pass'])) . $hash);
             $res = $user->loginUser();//вызываем метод loginUser из UserModel и он нам возвращает логическое
             // значение затронутых строк в базе return (bool) $res->rowCount()
-            $this->getResponse(['success' => $res, 'err'=>' Имя пользователя или пароль указаны не верно.']);
+            $this->getResponse(['success' => $res, 'err' => ' Имя пользователя или пароль указаны не верно.']);
             /*   if (Session::get('user', ['login' => ''])['login'] !== 'admin') {// если пользователь админ
                    ($res) ? header('Location: /main') : die('ERROR');// проверка getUserByLogin
                }else{
                    header('Location: /admin');//переход на сраницу администрирования
                }*/
         }
-            $this->getResponse(['success' => false, 'err' => ' Поля лоин и пароль обязательны для заполнения!']);
+        $this->getResponse(['success' => false, 'err' => ' Поля лоин и пароль обязательны для заполнения!']);
     }
 
     /**
@@ -77,15 +82,15 @@ class UsersController
      * @throws SmartyException
      * контроллер отображает всех пользователей
      */
-   /* public function all()
-    {
-        $list = UserModel::userList();
+    /* public function all()
+     {
+         $list = UserModel::userList();
 
-        global $smarty;// смартли глобальный класс мы его в index вызвали
-        $smarty->assign('users', $list);// передаем в смартли переменную $list по ключу 'users'
-        $smarty->display('users.tpl');//вызываем шаблон
+         global $smarty;// смартли глобальный класс мы его в index вызвали
+         $smarty->assign('users', $list);// передаем в смартли переменную $list по ключу 'users'
+         $smarty->display('users.tpl');//вызываем шаблон
 
-    }*/
+     }*/
 
     /**
      * проверяем авторизация пользователя
@@ -96,9 +101,7 @@ class UsersController
             die('non LogIn');
         };
         die('logged in');
-
     }
-
 
 
 }

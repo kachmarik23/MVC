@@ -1,0 +1,14 @@
+{
+    "name": "kachmarik/mvc",
+    "description": "sample mvs shop",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khizhnyak Oleg",
+            "email": "fontaneria1@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
