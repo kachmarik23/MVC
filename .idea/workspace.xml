@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12ec330f-4c56-4bca-a867-fcb7b05fa5c9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/ItemsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MVC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MVC.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/cache/categories.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/cache/categories.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/cache/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/cache/items.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +17,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
@@ -39,6 +43,15 @@
         <option value="D:\php\domains\MVC\.idea" />
       </set>
     </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1UIwKUDXbilSqusyqRQqsrp3vIA" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -178,7 +191,12 @@
       <workItem from="1582798796405" duration="5237000" />
       <workItem from="1582816941834" duration="4662000" />
       <workItem from="1582823345676" duration="3010000" />
-      <workItem from="1582906789606" duration="3191000" />
+      <workItem from="1582906789606" duration="12229000" />
+      <workItem from="1582924899950" duration="5548000" />
+      <workItem from="1582931469506" duration="75000" />
+      <workItem from="1582976337827" duration="108000" />
+      <workItem from="1582982615578" duration="618000" />
+      <workItem from="1583070653551" duration="614000" />
     </task>
     <servers />
   </component>
